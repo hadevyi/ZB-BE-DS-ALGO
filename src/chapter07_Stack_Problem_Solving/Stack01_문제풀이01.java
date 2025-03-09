@@ -22,7 +22,6 @@ public class Stack01_문제풀이01 {
                 stack.push(ch);
             }
         }
-
         while (!stack.isEmpty()) sb.append(stack.pop());
         System.out.println(sb.toString());
     }

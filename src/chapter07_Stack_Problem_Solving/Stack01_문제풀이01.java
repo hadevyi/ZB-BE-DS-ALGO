@@ -13,25 +13,22 @@ public class Stack01_문제풀이01 {
         Stack<Character> stack = new Stack<>();
 
         for (char ch : inputData.toCharArray()) {
-
             if ('0' <= ch && ch <= '9') {
                 sb.append(ch);
-            } else {
-                while (!stack.isEmpty() && isOperator(stack.peek())) {
+            } else { // 연산자일때
+                while (!stack.isEmpty() && precedence(stack.peek()) >= precedence(ch)) {
                     sb.append(stack.pop());
                 }
                 stack.push(ch);
             }
         }
-
-
-        while (!stack.isEmpty()) { // 스택에 남은 연산자 출력
-            sb.append(stack.pop());
-        }
+        while (!stack.isEmpty()) sb.append(stack.pop());
         System.out.println(sb.toString());
     }
 
-    private static boolean isOperator(char ch) {
-        return ch == '+' || ch == '-' || ch == '*' || ch == '/';
+    private static int precedence(char ch) {
+        if (ch == '+' || ch == '-') return 0;
+        if (ch == '*' || ch == '/') return 1;
+        return -1;
     }
 }

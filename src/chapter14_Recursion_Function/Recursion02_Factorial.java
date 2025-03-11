@@ -1,12 +1,21 @@
 package chapter14_Recursion_Function;
 
 public class Recursion02_Factorial {
-    public static int factorial(int n) {
-        if (n == 1) return 1; // 종료 조건(Base Case)
-        return n * factorial(n - 1); // 재귀 호출
+    public static int factorialRecursive(int n) {
+        if (n == 0) return 1;
+        return n * factorialRecursive(n - 1);
+    }
+
+    public static int factorialIterative(int n) {
+        int result = 1;
+        for (int i = 1; i <= n; i++) {
+            result *= i;
+        }
+        return result;
     }
 
     public static void main(String[] args) {
-        System.out.println(factorial(5)); // 출력: 120
+        System.out.println(factorialIterative(5));
+        System.out.println(factorialRecursive(5));
     }
 }
